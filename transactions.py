@@ -163,20 +163,6 @@ def display_transactions(transactions: List[dict]) -> None:
 
 # Example usage
 if __name__ == "__main__":
-    # Example usage
-    # transactions = []
-    # add_transaction(transactions, "Salary", Decimal("5000"), "income")
-    # add_transaction(transactions, "Groceries", Decimal("1500"), "expense")
-    # add_transaction(transactions, "Freelance", Decimal("2000"), "income")
-    # add_transaction(transactions, "Rent", Decimal("2500"), "expense")
-
-    # display_transactions(transactions)
-
-    # balance = calculate_balance(transactions)
-    # print(f"\nCurrent Balance: {format_currency(balance)}")
-
-    # budget_limit = Decimal("3000")
-    # within_budget, message = check_budget(balance, budget_limit)
-    # print(message)
+    
     pass
 
