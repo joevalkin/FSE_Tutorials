@@ -41,7 +41,7 @@ class Transaction(Base):
                 raise ValueError("Amount must be a valid decimal number") from e
         super().__init__(**kwargs)
 
-    def __repr__(self):
+    def __repr__(self): #makes the print function look good 
         amt = Decimal(str(self.amount)) if self.amount is not None else Decimal("0.00")
         return (
             "Transaction("

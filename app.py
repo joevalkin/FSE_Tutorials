@@ -41,7 +41,12 @@ def main():
 def add_entertainment_category():
     session = get_session()
     try:
-        pass
+        #check if entertainment category exists
+        category_exists = session.query(Category).filter_by(name="Entertainment").first()
+        if category_exists:
+            return
+        session.add(Category(name="Entertainment"))
+        session.commit()
     finally:
         session.close()
 
@@ -51,7 +56,30 @@ def add_entertainment_category():
 def add_entertainment_expenses():
     session = get_session()
     try:
-        pass
+        #step 1: Check if the entertainment category exists, 
+        entertainment_category = session.query(Category).filter_by(name="Entertainment").first()
+        if not entertainment_category:
+            logger.warning("Entertainment category does not exist.")
+            return
+
+        #step 2: if it does, add two sample expenses with negative amounts under the entertainment category
+        expense1 = Transaction(
+            date="2024-01-01",
+            description="Movie tickets",
+            amount=-60.00,
+            category_ref=entertainment_category,
+        )
+        expense2 = Transaction(
+            date="2024-01-02",
+            description="Concert tickets",
+            amount=-30.00,
+            category_ref=entertainment_category,
+        )
+
+        #Step 3: add the expenses to the database and commit the changes 
+        session.add(expense1)
+        session.add(expense2)
+        session.commit() 
     finally:
         session.close()
 
@@ -60,7 +88,14 @@ def add_entertainment_expenses():
 def display_transactions_by_category(category_name: str):
     session = get_session()
     try:
-        pass
+        category = session.query(Category).filter_by(name=category_name).first()
+        if not category:
+            logger.warning(f"Category '{category_name}' does not exist.")
+            return
+        transactions = session.query(Transaction).filter_by(category_ref=category).all()
+        print(f"Transactions in category '{category_name}':")
+        for transaction in transactions:
+            print(transaction)
     except Exception as e:
         logger.error(
             f"Error displaying transactions for category '{category_name}': {e}"
