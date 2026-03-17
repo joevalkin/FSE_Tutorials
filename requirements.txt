@@ -4,4 +4,6 @@ matplotlib
 pytest
 python-dotenv
 sqlalchemy
-loguru
+loguru 
+gunicorn
+black 
