@@ -4,7 +4,7 @@ name: wealth-wise
 runtime: python
 plan: free
 build_command: pip install -r requirements.txt && python -m data.seed
-startcommand: gunicorn app:app -- bind 0.0.0.0:SPORT
+startcommand: gunicorn app:app -- bind 0.0.0.0:$PORT
 envVars:
   - key: PYTHON_VERSION
     value: 3.11.11
